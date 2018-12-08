@@ -397,10 +397,10 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-yaml-to-analytics@^0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/yaml-to-analytics/-/yaml-to-analytics-0.0.0.tgz#05e482db76d65dbfcef7eecab8d1c77b2fa23aa9"
-  integrity sha512-j7CmpB4YKHC3FCHYZ8FZQtIXcmNv3/05N1t4mfU3K5WTInp2GUTp6WzGGGPxgVQo4sc2LOpsKSBZtf9esdhEJg==
+yaml-to-analytics@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/yaml-to-analytics/-/yaml-to-analytics-0.0.1.tgz#548b82efafab437c4bf61e0e4fcf93ccc5a25b34"
+  integrity sha512-DAlLQB+dTll76eN928xRxxQfOjE+OVu1p3klgJhyc1O3Q5nHxv4VDkw0rzBX1n+OEp0EPbLLImQeJzSKrRJKTg==
   dependencies:
     "@types/js-yaml" "^3.11.2"
     "@types/tmp" "^0.0.33"
