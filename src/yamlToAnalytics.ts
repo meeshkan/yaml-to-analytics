@@ -84,7 +84,7 @@ export default async (inDir: string, outFile: string) => {
     // with key = json file name and value = contents
     // all of the refs are changed to absolute paths
     const jsonz = yamlFilez
-        .map((yamlFile) => isAbsolute(yamlFile) ? yamlFile : join(__dirname, yamlFile))
+        .map((yamlFile) => isAbsolute(yamlFile) ? yamlFile : join(process.cwd(), yamlFile))
         .map((yamlFile) => (
             {
                 [yamlFile]:
