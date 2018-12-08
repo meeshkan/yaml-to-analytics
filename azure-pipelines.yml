@@ -20,6 +20,10 @@ steps:
     yarn test
   displayName: 'test'
 
+- script: |
+    rm -rf node_modules
+  displayName: 'remove node modules for publishing'
+
 - task: PublishBuildArtifacts@1
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
