@@ -2,7 +2,7 @@ import fs from "fs";
 import globSync from "glob";
 import yaml from "js-yaml";
 import { compileFromFile } from "json-schema-to-typescript";
-import clonedeep from "lodash/clonedeep";
+import clonedeep from "lodash.clonedeep";
 import { dirname, extname, isAbsolute, join, resolve } from "path";
 import tmp from "tmp";
 import TopologicalSort from "topological-sort";
