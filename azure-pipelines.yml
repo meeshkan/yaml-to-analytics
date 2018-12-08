@@ -14,15 +14,11 @@ steps:
 - script: |
     npm install -g yarn
     yarn
-  displayName: 'Initialize yarn'
+  displayName: 'Initialize yarn and build'
 
 - script: |
     yarn test
   displayName: 'test'
-
-- script: |
-    yarn prepare
-  displayName: 'build'
 
 - task: PublishBuildArtifacts@1
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
