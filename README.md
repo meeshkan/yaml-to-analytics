@@ -1,7 +1,7 @@
 # yaml-to-analytics
 
 A simple utility that helps us define types for the analytics
-information that goes to [segment.io](https://segment.io).  We hope you find it useful as well!
+information that goes to [segment](https://segment.com).  We hope you find it useful as well!
 
 ## Why use this?
 
@@ -27,5 +27,5 @@ sendAnalyticsEvent("usr sings in", {
 yarn add -D yaml-to-analytics
 ```
 
-Then, check out the `example/` directory for a minimum viable kitchen sink example.  Basically, create a bunch of YAML files in [JSON Schema](https://json-schema.org/) format and each one will be turned into a function that returns a [segment.io](https://segment.io) analytics event for their [Node SDK](https://github.com/segmentio/analytics-node).
+Then, check out the `example/` directory for a minimum viable kitchen sink example.  Basically, create a bunch of YAML files in [JSON Schema](https://json-schema.org/) format and each one will be turned into a function that returns a [segment](https://segment.com) analytics event for their [Node SDK](https://github.com/segmentio/analytics-node).
 
