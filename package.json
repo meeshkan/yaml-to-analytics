@@ -4,7 +4,7 @@
   "license": "MIT",
   "bin": "./dist/cli.js",
   "scripts": {
-    "prepare": "rm -rf dist && tsc",
+    "prepare": "rm -rf dist && tsc --newLine LF",
     "test": "jest --json --outputFile=.test-results.json --coverage"
   },
   "devDependencies": {
