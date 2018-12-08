@@ -3,3 +3,4 @@ src
 coverage
 junit.xml
 .test-results.json
+examples

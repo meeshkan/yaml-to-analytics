@@ -1,0 +1,10 @@
+title: makes a group
+type: object
+properties:
+  groupName:
+    type: string
+extends:
+  $ref: './BaseType.yml'
+additionalProperties: false
+required:
+- groupName

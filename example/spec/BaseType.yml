@@ -1,0 +1,9 @@
+title: BaseType
+type: object
+properties:
+  name:
+    id: string
+    description: internally used id for various types 
+additionalProperties: false
+required:
+- id
