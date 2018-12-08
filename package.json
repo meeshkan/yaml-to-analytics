@@ -5,7 +5,7 @@
   "scripts": {
     "bin": "./dist/cli.js",
     "prepare": "rm -rf dist && tsc",
-    "test": "jest"
+    "test": "jest --json --outputFile=.test-results.json --coverage"
   },
   "devDependencies": {
     "@types/debug": "^0.0.31",
@@ -15,6 +15,7 @@
     "@types/node": "^10.12.12",
     "@types/randomstring": "^1.1.6",
     "jest": "^23.6.0",
+    "jest-junit": "^5.2.0",
     "randomstring": "^1.1.5",
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",

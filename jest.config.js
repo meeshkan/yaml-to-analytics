@@ -14,4 +14,13 @@ module.exports = {
       "json",
       "node"
     ],
+    "coverageReporters": [
+    "cobertura",
+    "html"
+    ],
+    "reporters": [ "default", "jest-junit" ],
+    "collectCoverageFrom": [
+    "src/**/*.ts",
+    "!src/generated/**/*.ts"
+    ],
   }
