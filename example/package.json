@@ -6,6 +6,6 @@
     "build": "rm -rf generated && mkdir generated && yaml-to-analytics spec/**/*.yml generated/index.ts"
   },
   "devDependencies": {
-    "yaml-to-analytics": "^0.0.2"
+    "yaml-to-analytics": "^0.0.3"
   }
 }
