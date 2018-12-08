@@ -16,7 +16,7 @@ properties:
     - blue
     type: string
 extends:
-  $ref: './GroupUserBase.yml'
+  $ref: './BaseType.yml'
 additionalProperties: false
 required:
 - firstName

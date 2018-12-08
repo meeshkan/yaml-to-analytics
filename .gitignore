@@ -3,4 +3,3 @@ dist/
 coverage/
 junit.xml
 .test-results.json
-examples/node_modules
