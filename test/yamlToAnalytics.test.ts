@@ -1,7 +1,7 @@
 import fs from "fs";
 import randomstring from "randomstring";
 import ymlFilesToTypeFile, {
-  buildFileContents, getRefs, resolveReferencePaths, substituteRefs } from "../src/yamlToAnalytics";
+  getRefs, resolveReferencePaths, substituteRefs } from "../src/yamlToAnalytics";
 
 test("resolveReferencePaths", () => {
   expect(resolveReferencePaths("/foo/bar", {
