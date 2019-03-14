@@ -78,7 +78,7 @@ export const substituteRefs = (json: any, substitutes: any) => {
     return out;
 };
 
-export default async (inDir: string, outFile: string) => {
+export const buildFileContents = async (inDir: string) => {
     const yamlFilez = await glob(inDir);
     // returns dictionary of kv pairs
     // with key = json file name and value = contents
@@ -131,11 +131,16 @@ export default async (inDir: string, outFile: string) => {
         .concat(Object.keys(jsonzWithSubstituteRefs)
             .map((key) => jsonzWithSubstituteRefs[key].title)
             .map((title) =>
-`export const make${capNoSpace(title)} = (userId: string, properties: ${capNoSpace(title)}) => ({
-    userId,
-    event: "${title}",
-    properties,
-});
-`));
-    fs.writeFileSync(outFile, file.join("\n"));
+                `export const make${capNoSpace(title)} = (userId: string, properties: ${capNoSpace(title)}) => ({
+                    userId,
+                    event: "${title}",
+                    properties,
+                });
+        `));
+    return file.join("\n");
+};
+
+export default async (inDir: string, outFile: string) => {
+    const fileContents = await buildFileContents(inDir);
+    fs.writeFileSync(outFile, fileContents);
 };
