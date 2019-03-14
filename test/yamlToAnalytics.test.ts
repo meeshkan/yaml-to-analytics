@@ -138,6 +138,8 @@ test("ts json to make correct type file", async () => {
   await ymlFilesToTypeFile(`${yamlDir}/**/*.yml`, targetTsFile);
   const analyticsModule = await import(tsDir);
   const userId = "foobar";
-  const registersAUserEvent = analyticsModule.makeRegistersAUser(userId, {});
+  const firstName = "first";
+  const registersAUserEvent = analyticsModule.makeRegistersAUser(userId, { firstName });
   expect(registersAUserEvent.userId).toBe(userId);
+  expect(registersAUserEvent.properties.firstName).toBe(firstName);
 });
