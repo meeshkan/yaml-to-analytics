@@ -130,11 +130,12 @@ export const buildFileContents = async (inDir: string) => {
         .concat(tss)
         .concat(Object.keys(jsonzWithSubstituteRefs)
             .map((key) => jsonzWithSubstituteRefs[key].title)
-            .map((title) =>
-`export const make${capNoSpace(title)} = (userId?: string, properties?: ${capNoSpace(title)}) => ({
+            .map((title) =>  // tslint:disable-next-line
+`export const make${capNoSpace(title)} = (userId?: string, properties?: ${capNoSpace(title)}, anonymousId?: string) => ({
     userId,
     event: "${title}",
     properties,
+    anonymousId,
 });
 `));
     return file.join("\n");
