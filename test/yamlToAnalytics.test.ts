@@ -132,14 +132,28 @@ const buildYamlAndTsDirs = () => {
   return [yamlDir, tsDir];
 };
 
-test("ts json to make correct type file", async () => {
-  const [yamlDir, tsDir] = buildYamlAndTsDirs();
-  const targetTsFile = `${tsDir}/index.ts`;
-  await ymlFilesToTypeFile(`${yamlDir}/**/*.yml`, targetTsFile);
-  const analyticsModule = await import(tsDir);
+describe("Building TS from YAML spec", () => {
+  let tsDir: string;
+  let builtAnalyticsModule: any;
   const userId = "foobar";
-  const firstName = "first";
-  const registersAUserEvent = analyticsModule.makeRegistersAUser(userId, { firstName });
-  expect(registersAUserEvent.userId).toBe(userId);
-  expect(registersAUserEvent.properties.firstName).toBe(firstName);
+  const anonymousId = "foobaranon";
+  const userProperties = { firstName: "first" };
+  beforeAll(async () => {
+    let yamlDir: string;
+    [yamlDir, tsDir] = buildYamlAndTsDirs();
+    const targetTsFile = `${tsDir}/index.ts`;
+    console.info(`Writing to ${targetTsFile}`);  // tslint:disable-line
+    await ymlFilesToTypeFile(`${yamlDir}/**/*.yml`, targetTsFile);
+    builtAnalyticsModule = await import(tsDir);
+  });
+  test("makes register a user event correctly", async () => {
+    const registersAUserEvent = builtAnalyticsModule.makeRegistersAUser({ userId, properties: userProperties });
+    expect(registersAUserEvent.userId).toBe(userId);
+    expect(registersAUserEvent.properties.firstName).toBe(userProperties.firstName);
+  });
+  test("makes register a user event with anonymous ID", async () => {
+    const registersAUserEvent = builtAnalyticsModule.makeRegistersAUser({ anonymousId, properties: { } });
+    expect(registersAUserEvent.userId).toBeUndefined();
+    expect(registersAUserEvent.anonymousId).toBe(anonymousId);
+  });
 });
