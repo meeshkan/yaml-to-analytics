@@ -1,7 +1,7 @@
 # yaml-to-analytics
 
 A simple utility that helps us define types for the analytics
-information that goes to [segment](https://segment.com).  We hope you find it useful as well!
+information that goes to [Segment](https://segment.com).  We hope you find it useful as well!
 
 ## Why use this?
 
