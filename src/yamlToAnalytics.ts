@@ -3,7 +3,7 @@ import globSync from "glob";
 import yaml from "js-yaml";
 import { compileFromFile } from "json-schema-to-typescript";
 import clonedeep from "lodash.clonedeep";
-import { dirname, extname, isAbsolute, join, resolve } from "path";
+import { dirname, isAbsolute, join, resolve } from "path";
 import tmp from "tmp";
 import TopologicalSort from "topological-sort";
 import { promisify } from "util";
@@ -131,7 +131,7 @@ export const buildFileContents = async (inDir: string) => {
         .concat(Object.keys(jsonzWithSubstituteRefs)
             .map((key) => jsonzWithSubstituteRefs[key].title)
             .map((title) =>  // tslint:disable-next-line
-`export const make${capNoSpace(title)} = ({ userId, anonymousId, properties }: { userId?: string, anonymousId?: string, properties?: ${capNoSpace(title)} }) => ({
+`export const make${capNoSpace(title)} = ({ userId, anonymousId, properties }: { userId?: string, anonymousId?: string, properties: ${capNoSpace(title)} }) => ({
     userId,
     event: "${title}",
     properties,
