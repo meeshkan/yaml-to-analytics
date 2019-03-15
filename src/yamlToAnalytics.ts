@@ -131,7 +131,7 @@ export const buildFileContents = async (inDir: string) => {
         .concat(Object.keys(jsonzWithSubstituteRefs)
             .map((key) => jsonzWithSubstituteRefs[key].title)
             .map((title) =>
-`export const make${capNoSpace(title)} = (userId: string, properties: ${capNoSpace(title)}) => ({
+`export const make${capNoSpace(title)} = (userId?: string, properties?: ${capNoSpace(title)}) => ({
     userId,
     event: "${title}",
     properties,
