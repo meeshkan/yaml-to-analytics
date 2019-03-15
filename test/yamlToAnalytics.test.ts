@@ -139,7 +139,7 @@ test("ts json to make correct type file", async () => {
   const analyticsModule = await import(tsDir);
   const userId = "foobar";
   const firstName = "first";
-  const registersAUserEvent = analyticsModule.makeRegistersAUser(userId, { firstName });
+  const registersAUserEvent = analyticsModule.makeRegistersAUser({ userId, properties: { firstName } });
   expect(registersAUserEvent.userId).toBe(userId);
   expect(registersAUserEvent.properties.firstName).toBe(firstName);
 });
