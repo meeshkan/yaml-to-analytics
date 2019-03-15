@@ -1,6 +1,7 @@
 import fs from "fs";
 import randomstring from "randomstring";
-import ymlFilesToTypeFile, { getRefs, resolveReferencePaths, substituteRefs } from "../src/yamlToAnalytics";
+import ymlFilesToTypeFile, {
+  getRefs, resolveReferencePaths, substituteRefs } from "../src/yamlToAnalytics";
 
 test("resolveReferencePaths", () => {
   expect(resolveReferencePaths("/foo/bar", {
@@ -111,21 +112,34 @@ required:
 `,
 };
 
-test("ts json to make correct type file", async () => {
-  const parentDir = ".m33$hk4n_y4ml";
-  if (!fs.existsSync(`/tmp/${parentDir}`)) {
-    fs.mkdirSync(`/tmp/${parentDir}`);
+const TMP_DIR = "/tmp";
+const PARENT_DIR = `${TMP_DIR}/.m33$hk4n_y4ml`;
+
+const buildYamlAndTsDirs = () => {
+  if (!fs.existsSync(PARENT_DIR)) {
+    fs.mkdirSync(PARENT_DIR);
   }
-  const dir = randomstring.generate();
-  fs.mkdirSync(`/tmp/${parentDir}/${dir}`);
-  const yamlDir = `/tmp/${parentDir}/${dir}/yaml`;
-  const tsDir = `/tmp/${parentDir}/${dir}/ts`;
+  const dir = `${PARENT_DIR}/${randomstring.generate()}`;
+  fs.mkdirSync(dir);
+  const yamlDir = `${dir}/yaml`;
+  const tsDir = `${dir}/ts`;
   fs.mkdirSync(yamlDir);
   fs.mkdirSync(tsDir);
   for (const SCHEMA of Object.keys(SCHEMAS)) {
-    const kls = `Q${randomstring.generate()}`;
     const yamlFile = `${yamlDir}/${SCHEMA}.yml`;
     fs.writeFileSync(yamlFile, SCHEMAS[SCHEMA]);
   }
-  await ymlFilesToTypeFile(`${yamlDir}/**/*.yml`, `${tsDir}/index.ts`);
+  return [yamlDir, tsDir];
+};
+
+test("ts json to make correct type file", async () => {
+  const [yamlDir, tsDir] = buildYamlAndTsDirs();
+  const targetTsFile = `${tsDir}/index.ts`;
+  await ymlFilesToTypeFile(`${yamlDir}/**/*.yml`, targetTsFile);
+  const analyticsModule = await import(tsDir);
+  const userId = "foobar";
+  const firstName = "first";
+  const registersAUserEvent = analyticsModule.makeRegistersAUser(userId, { firstName });
+  expect(registersAUserEvent.userId).toBe(userId);
+  expect(registersAUserEvent.properties.firstName).toBe(firstName);
 });
